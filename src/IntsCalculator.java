@@ -1,0 +1,38 @@
+public class IntsCalculator implements Ints {
+
+    private final Calculator calculator;
+
+    public IntsCalculator() {
+        this.calculator = new Calculator();
+    }
+
+    @Override
+    public int sum(int arg0, int arg1) {
+        return createFormula(arg0, arg1)
+                .calculate(Calculator.Operation.SUM)
+                .result
+                .intValue();
+    }
+
+    @Override
+    public int mult(int arg0, int arg1) {
+        return createFormula(arg0, arg1)
+                .calculate(Calculator.Operation.MULT)
+                .result
+                .intValue();
+    }
+
+    @Override
+    public int pow(int a, int b) {
+        return createFormula(a, b)
+                .calculate(Calculator.Operation.POW)
+                .result
+                .intValue();
+    }
+
+    private Calculator.Formula createFormula(int a, int b) {
+        return calculator.newFormula()
+                .addOperand(a)
+                .addOperand(b);
+    }
+}
